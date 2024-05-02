@@ -1,0 +1,14 @@
+.users a{
+    display: flex;
+    font-size: 20px;
+    text-decoration: none;
+
+}
+.dialogs_block{
+display: flex;
+    gap:20px;
+    align-items: center;
+}
+.users_active{
+    color:gold;
+}
