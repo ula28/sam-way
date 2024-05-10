@@ -1,5 +1,5 @@
 
-import {PostPageReducer,T_MainPostAction} from "./reducers/postPageReducer";
+import {PostsPageReducer, T_MainPostAction} from "./reducers/postPageReducer";
 import {
     DialogsPageReducer,
     T_MainMessageAction
@@ -93,7 +93,7 @@ export type T_store={
 //     data.postsPage.posts.push(newPost)
 //     rerenderEntireTree()
 // }
-export type T_Actions =T_MainPostAction |T_MainMessageAction
+export type T_Actions =T_MainPostAction & T_MainMessageAction
 export const store: T_store= {
     _state: {
         dialogsPage: {
@@ -143,8 +143,8 @@ export const store: T_store= {
     //     this._callSubscriber(this._state)
     // },
     dispatch(action) {
-        this._state.postsPage = PostPageReducer(this._state.postsPage, action)
-        this._state.dialogsPage = DialogsPageReducer(this._state.dialogsPage, action)
+        this._state.postsPage = PostsPageReducer(this._state.postsPage, action)
+        this._state.dialogsPage = DialogsPageReducer(this._state.dialogsPage,action)
         this._callSubscriber(this._state)
         // if(action.type===ADD_POST ){
         //         const newPost = {

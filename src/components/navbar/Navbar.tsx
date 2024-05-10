@@ -2,6 +2,7 @@ import React from "react";
 import {NavLink} from "react-router-dom";
 import s from "./Navbar.module.css"
 import {T_users} from "../data/data";
+import {reduxStore} from "../data/redux/store";
 
 
 
@@ -11,8 +12,8 @@ type T_NavbarProps={
 
 export class Navbar extends React.Component<T_NavbarProps>{
     render() {
-        const{users}=this.props
-
+        // const{users}=this.props
+const{users}=this.props
         const firstUserMessage=users[0].id
 
         return (
@@ -38,6 +39,11 @@ export class Navbar extends React.Component<T_NavbarProps>{
                 <div>
                     <NavLink className={({isActive}) => isActive ? s.item_active : s.item}
                              to={"/settings"}>Settings
+                    </NavLink>
+                </div>
+                <div>
+                    <NavLink className={({isActive}) => isActive ? s.item_active : s.item}
+                             to={"/users"}>Users
                     </NavLink>
                 </div>
 

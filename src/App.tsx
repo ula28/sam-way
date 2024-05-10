@@ -4,25 +4,32 @@ import {Header} from "./components/header/Header";
 import {Navbar} from "./components/navbar/Navbar";
 
 import { RoadMap} from "./components/roadmap/RoadMap";
-import {T_store} from "./components/data/data";
+// import {store, T_data, T_store} from "./components/data/data";
+// import {reduxStore, RootDispatch} from "./components/data/redux/store";
+import {NavbarContainer} from "./components/navbar/NavbarContainer";
 
-class  App extends React.Component<{  store:T_store }>{
+class  App extends React.Component
+//     <
+//     { state:T_data}
+// >
+{
     render(){
-        const{store}=this.props
+        // const{state}=this.props
         return (
             <div className="app_wrapper">
                 <Header/>
-                <Navbar users={store.getState().dialogsPage.users}/>
+                <NavbarContainer/>
+                {/*<Navbar users={store.getState().dialogsPage.users}/>*/}
                 <div className="app_wrapper_content">
-                    <RoadMap data={store.getState()}
+                    <RoadMap
+                        // data={state}
                              // addPost={store.addPost}
                              // changePostValue={store.changePostValue}
-                        dispatch={store.dispatch.bind(store)}
+                        // dispatch={reduxStore.dispatch.bind(reduxStore)}
                     />
                 </div>
                 <Counter name={"ttt"}/>
             </div>
-
         )
     }
 }

@@ -1,16 +1,21 @@
 import React from "react";
 import {MyPosts} from "./myposts/MyPosts";
-import {T_Actions, T_PostsPage} from "../data/data";
+// import {T_Actions, T_PostsPage} from "../data/data";
 import s from "./Profile.module.css"
+import {MyPostsContainer} from "./MyPostsContainer";
 
 
-export class Profile extends React.Component<{postsPage:T_PostsPage,
+export class Profile extends React.Component
+    // <
+    // {postsPage:T_PostsPage,
     // addPost:()=>void,
     // changePostValue:(text:string)=>void
-    dispatch:(action:T_Actions)=>void
-}>{
+    // dispatch:(action:T_Actions)=>void
+// }
+// >
+{
     render(){
-        const{ postsPage,dispatch}=this.props
+        // const{ postsPage,dispatch}=this.props
         return (
             <div className={s.profile}>
                 <img src="https://deep-image.ai/blog/content/images/2022/09/underwater-magic-world-8tyxt9yz.jpeg"
@@ -18,13 +23,12 @@ export class Profile extends React.Component<{postsPage:T_PostsPage,
                 <div>
                     ava+descr
                 </div>
-                <MyPosts
-                    postsPage={postsPage}
+                < MyPostsContainer
+                    // postsPage={postsPage}
                     // addPost={addPost}
                     // changePostValue={changePostValue}
-                    dispatch={dispatch}
+                    // dispatch={dispatch}
                 />
-
             </div>
         )
     }

@@ -1,10 +1,11 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 import s from'./Dialogs.module.css'
-import {T_Actions, T_dialogs, T_dialogsPage, T_users} from "../data/data";
-import {ADD_MESSAGE, CHANGE_VALUE_NEW_MESSAGE} from "../../helpers/actionTypes";
-import {AddMessageCreator, ChangeValueNewMessageCreator} from "../data/reducers/dialogsPageReducer";
+import {T_dialogsPage} from "../data/reducers/dialogsPageReducer";
+import {T_DialogsProps} from "./DialogsContainer";
 
+
+// import {AddMessageCreator, ChangeValueNewMessageCreator} from "../data/reducers/dialogsPageReducer";
 
 //
 // type T_DialogItem={
@@ -31,26 +32,44 @@ class DialogItem extends React.Component<{ id:string, name:string }>{
         )
     }
 }
+// interface T_Dialogs{
+//     users: T_users[]
+//     dialogsPage:T_dialogsPage
+//     dispatch:(action:T_Actions)=>void
+// }
 
-export class Dialogs extends React.Component<{ users: T_users[],dialogsPage:T_dialogsPage,dispatch:(action:T_Actions)=>void  }>{
+export class Dialogs extends React.Component< T_DialogsProps
+//     {
+//      dialogsPage:T_dialogsPage,
+// //     // dispatch:(action:T_Actions)=>void
+//     onChangeNewMessageValue:(value:string)=>void
+//     addMessage:()=>void
+//     // onChangeNewMessageValueHandler:(e:React.ChangeEvent<HTMLTextAreaElement>)=>void
+// //     addMessageHandler:()=>void
+//  }
+>
+{
     render(){
-        const{ users,dialogsPage,dispatch}=this.props
+        const{ dialogsPage
+            ,onChangeNewMessageValue,
+            addMessage
+            // onChangeNewMessageValueHandler
+        }=this.props
 
-        const filteredMessageFromUserId=dialogsPage.dialogs.filter(dialog=>dialog.userId==="2" ).map(f=><li>{f.messages}</li>)
-        const onChangeNewMessageValue=(e:React.ChangeEvent<HTMLTextAreaElement>)=>{
-            // dispatch({type:CHANGE_VALUE_NEW_MESSAGE,value:e.currentTarget.value})
-            let value=e.currentTarget.value
-            ChangeValueNewMessageCreator(value)
+        const filteredMessageFromUserId = dialogsPage.dialogs.filter(dialog => dialog.userId === "1").map(f => <li
+            key={f.id}>{f.messages}</li>)
+        const onChangeNewMessageValueHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+            onChangeNewMessageValue(e.currentTarget.value)
         }
-        const addMessageHandler=()=>{
-            // dispatch({type:ADD_MESSAGE})
-            AddMessageCreator()
+        const AddNewMessageHandler = () => {
+            addMessage()
         }
         return (
             <div className={s.dialogs_block}>
+
                 <div className={s.users}>
-                    {users.length
-                        ? users.map(u => <DialogItem id={u.id} name={u.name}/>)
+                    {dialogsPage.users.length
+                        ? dialogsPage.users.map(u => <DialogItem id={u.id} name={u.name}/>)
                         : <div>dialogs empty</div>}
                     {/*<DialogItem id={'1'} name={'Vasya'}/>*/}
                 </div>
@@ -64,10 +83,10 @@ export class Dialogs extends React.Component<{ users: T_users[],dialogsPage:T_di
                         <textarea
                             placeholder={"enter your message"}
                             value={dialogsPage.newMessageValue}
-                            onChange={onChangeNewMessageValue}
+                            onChange={ onChangeNewMessageValueHandler}
                         ></textarea>
                     </div>
-                    <button onClick={addMessageHandler}>add message</button>
+                    <button onClick={AddNewMessageHandler} >add message</button>
 
                 </div>
             </div>

@@ -3,7 +3,8 @@ import {Post} from "./post/Post";
 import { T_Actions, T_PostsPage} from "../../data/data";
 import s from "../../dialogs/Dialogs.module.css";
 
-import {AddPostPageCreator, ChangeValueTextPostCreator} from "../../data/reducers/postPageReducer";
+// import {AddPostPageCreator, ChangeValueTextPostCreator} from "../../data/reducers/postPageReducer";
+
 
 // export class MyPosts extends React.Component< T_Posts, I_Props>{
 //     constructor(props:T_Posts|Readonly<T_Posts>){
@@ -15,29 +16,17 @@ import {AddPostPageCreator, ChangeValueTextPostCreator} from "../../data/reducer
 //
 //     render() {
 // }
-export class MyPosts extends React.Component<{ postsPage:T_PostsPage,
+export class MyPosts extends React.Component<{
+    postsPage:T_PostsPage,
     // addPost:()=>void,
     // changePostValue:(text:string)=>void
-    dispatch:(action:T_Actions)=>void
+    // dispatch:(action:T_Actions)=>void
+    onClickHandler:()=>void
+    changePostValueHandler:(e:React.ChangeEvent<HTMLTextAreaElement>)=>void
 }>{
-
     render(){
-
-        const{ postsPage}=this.props
+        const{ postsPage,onClickHandler,changePostValueHandler}=this.props
         // const {textValue}=this.state
-        const onClickHandler=()=>{
-            // dispatch({type:ADD_POST})
-            AddPostPageCreator()
-            // this.setState({textValue:''})
-     }
-     const changePostValueHandler=(e:React.ChangeEvent<HTMLTextAreaElement>)=>{
-// this.setState({textValue:e.currentTarget.value})
-         let value=e.currentTarget.value
-//          changePostValue(e.currentTarget.value)
-//          dispatch({type:CHANGE_VALUE_TEXT_POST,value:value})
-         ChangeValueTextPostCreator(value)
-
-     }
         return (
             <div>
                 <h3>My Posts</h3>
