@@ -14,3 +14,6 @@ export const reduxStore =createStore(rootReducer)
 
 export type RootState= ReturnType<typeof rootReducer>
 export type RootDispatch=typeof reduxStore.dispatch
+
+// @ts-ignore
+window.store=reduxStore

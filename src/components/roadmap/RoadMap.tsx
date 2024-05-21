@@ -1,12 +1,7 @@
 import {Navigate, Route, Routes} from "react-router-dom";
 import {Profile} from "../profile/Profile";
-import {Dialogs} from "../dialogs/Dialogs";
 import React from "react";
-import {T_Actions, T_data} from "../data/data";
-import s from "../header/Header.module.css";
 import {DialogsContainer} from "../dialogs/DialogsContainer";
-import {MyPostsContainer} from "../profile/MyPostsContainer";
-import Users from "../users/Users";
 import {UsersContainer} from "../users/UsersContainer";
 
 // import s from "../header/Header.module.css";
